@@ -15,7 +15,7 @@ RUN npm install -g @angular/cli@8.3.25
 COPY . .
 
 # listen on port
-EXPORT 4200
+#EXPORT 4200
 
 # start app and check every 500 milisec for new changes
 # connect without localhost (--host)
