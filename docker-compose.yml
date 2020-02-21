@@ -1,9 +1,21 @@
 version: "3.7"
 services:
-  angular-container:
+  angular:
+    image: neileen/dockerhub_app:latest
     build: .
     ports:
       - "4200:4200"
     volumes:
       - "/app/node_modules"
       - ".:/app"
+    deploy:
+      replicas: 1  
+  java:
+    image: neileen/java_dockerapp:latest
+    build: .
+    ports:
+      - "4201:4200"
+    depends_on:
+      - angular
+    deploy:
+      replicas: 1  

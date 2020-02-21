@@ -5,13 +5,12 @@
       <span class="login-header">Login</span>
       <!-- login form -->
 
-      <!-- <form class="login-form" (ngSubmit)="login($event)" #authform="ngForm"> -->
-      <form class="login-form">
+      <form class="login-form" #authform="ngForm">
+      <!-- <form class="login-form"> -->
         <input ngModel type="email" autofocus placeholder="Email" name="email" class="login-input" required>
-        <input ngModel type="password" placeholder="Password" name="password" class="login-input" minlength="6"
-               required>
+        <input ngModel type="password" placeholder="Password" name="password" class="login-input" minlength="3" required>
         <input type="submit" name="submit" value="Login" class="login-btn" [class.btn-disabled]="!authform.form.valid"
-               [disabled]="!authform.form.valid">
+               [disabled]="!authform.form.valid" (click)="login()">
       </form>
       <div class="signup-link-wrapper">
         <span class="signup-notice">Don't have an account?</span>
