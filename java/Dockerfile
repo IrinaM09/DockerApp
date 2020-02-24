@@ -2,21 +2,21 @@
 FROM maven:3.6.1-jdk-8
 
 # application placed into /opt/app
-RUN mkdir -p /opt/app
-WORKDIR /opt/app
+RUN mkdir -p /app
+WORKDIR /app
 
 # add the POM file
-COPY pom.xml /opt/app/
+COPY /java/pom.xml .
 
 # install dependencies
 RUN mvn install
 
 # rest of the project
-COPY src /opt/app/src
+COPY /java/src ./src
 RUN mvn package
 
 # local application port
-#EXPOSE 8081
+EXPOSE 8081
 
-# execute it
+# run app
 CMD ["mvn", "exec:java"]

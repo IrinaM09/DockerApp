@@ -12,12 +12,11 @@ RUN npm install
 RUN npm install -g @angular/cli@8.3.25
 
 # add app
-COPY . .
+COPY /angular/* .
 
 # listen on port
-#EXPORT 4200
+EXPOSE 4200
 
-# start app and check every 500 milisec for new changes
-# connect without localhost (--host)
+# start app; check every 500 milisec for changes
 CMD ng serve --host 0.0.0.0 --poll 500
 
