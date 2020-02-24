@@ -5,7 +5,7 @@ FROM node:12.13.0
 WORKDIR /app
 
 # cache app dependencies
-COPY package.json .
+COPY /angular/package.json .
 
 # install
 RUN npm install
