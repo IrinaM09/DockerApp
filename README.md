@@ -1,5 +1,6 @@
 # DockerApp
-This repo is used in together with DockerHub the automatically build an application that stores TODOs per user.
+This repo is used together with DockerHub to automatically build a Weather Application.\
+You can enter as a guest or sign up for an account in which case you can save and delete your favourite locations.
 
 ### Arhitecture ### 
 - Angular
@@ -8,8 +9,7 @@ This repo is used in together with DockerHub the automatically build an applicat
 - Elasticsearch
 - Grafana
 
-![Imgur](https://imgur.com/itKquVC)
-Format: ![Arhitecture Image](url)
+![Imgur Image](https://i.imgur.com/itKquVC.png)
 
 ```
 More information can be found in the document Weather App - Mitocaru Irina 343 C1
