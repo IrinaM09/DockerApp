@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  angular:
+    build: ./angular
+    volumes:
+      - ./angular:/app
+    ports:
+      - "4200:4200"
+  java:
+    build: ./java
+    volumes:
+      - ./java:/app
+    ports:
+      - "4201:4200"

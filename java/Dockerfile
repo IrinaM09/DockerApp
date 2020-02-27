@@ -16,7 +16,7 @@ COPY /java/src ./src
 RUN mvn package
 
 # local application port
-EXPOSE 8081
+EXPOSE 4200
 
 # run app
 CMD ["mvn", "exec:java"]
