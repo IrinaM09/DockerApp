@@ -1,6 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ServiceService } from 'src/service.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
@@ -8,19 +7,9 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private service: ServiceService) {
+  constructor() {
   }
 
   ngOnInit() {
-  }
-
-  login() {
-    this.service.login().subscribe((res) => {
-      console.log("Success")
-
-    }, (err: HttpErrorResponse) => {
-      console.log("error: " + err);
-
-    });
   }
 }
