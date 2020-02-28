@@ -1,18 +1,17 @@
 # fetch basic image
 FROM maven:3.6.1-jdk-8
 
-# application placed into /opt/app
-RUN mkdir -p /app
-WORKDIR /app
+# set working directory
+WORKDIR /java
 
 # add the POM file
-COPY /java/pom.xml .
+COPY pom.xml ./
 
 # install dependencies
 RUN mvn install
 
 # rest of the project
-COPY /java/src ./src
+COPY src ./src
 RUN mvn package
 
 # local application port

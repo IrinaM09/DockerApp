@@ -2,21 +2,21 @@
 FROM node:12.13.0
 
 # set working directory
-WORKDIR /app
+WORKDIR /angular
 
-# cache app dependencies
-COPY /angular/package.json .
+# cache app dependencies (needed by npm install)
+COPY package.json ./package.json
 
 # install
 RUN npm install
 RUN npm install -g @angular/cli@8.3.25
 
 # add app
-COPY /angular/* .
+COPY . ./
 
 # listen on port
 EXPOSE 4200
 
-# start app; check every 500 milisec for changes
-CMD ng serve --host 0.0.0.0 --poll 500
+# start app
+CMD ng serve --host 0.0.0.0
 
