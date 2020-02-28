@@ -5,13 +5,13 @@ FROM maven:3.6.1-jdk-8
 WORKDIR /java
 
 # add the POM file
-COPY pom.xml ./
+COPY /java/pom.xml ./
 
 # install dependencies
 RUN mvn install
 
 # rest of the project
-COPY src ./src
+COPY /java/src ./src
 RUN mvn package
 
 # local application port

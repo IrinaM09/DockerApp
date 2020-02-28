@@ -5,14 +5,14 @@ FROM node:12.13.0
 WORKDIR /angular
 
 # cache app dependencies (needed by npm install)
-COPY package.json ./package.json
+COPY /angular/package.json ./package.json
 
 # install
 RUN npm install
 RUN npm install -g @angular/cli@8.3.25
 
 # add app
-COPY . ./
+COPY /angular ./
 
 # listen on port
 EXPOSE 4200
