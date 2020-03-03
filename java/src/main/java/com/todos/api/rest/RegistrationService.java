@@ -10,7 +10,7 @@ public class RegistrationService {
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    @Path("login")
+    @Path("signup")
     public String test() {
         return "Server is working!";
     }

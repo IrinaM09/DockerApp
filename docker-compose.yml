@@ -1,14 +1,14 @@
 version: "3.7"
 services:
   angular:
-    build: ./angular
+    image: neileen/dockerhub_app:latest
     volumes:
-      - ./angular:/app
+      - ./angular:/app-angular
     ports:
       - "4200:4200"
   java:
-    build: ./java
+    image: neileen/dockerhub_app:java-latest
     volumes:
-      - ./java:/app
+      - ./java:/app-java
     ports:
       - "4201:4200"

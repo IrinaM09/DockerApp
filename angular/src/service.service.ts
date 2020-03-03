@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ServiceService {
 
-  private javaServerURL: string = "http://localhost:8080/";
+  private javaServerURL: string = "http://localhost:4201/";
   private pythonServerURL: string = "http://127.0.0.1:5002/";
 
   constructor(private http: HttpClient) { }
@@ -22,12 +22,9 @@ export class ServiceService {
     return this.http.post(this.pythonServerURL + "login", user, { responseType: 'text' });  
   }
 
-  signup(email: string, password: string) {
+  signup() {
     console.log("sending to " + this.javaServerURL + "signup");
-    var user = {
-      "email": email,
-      "password": password
-    }
-    return this.http.post(this.javaServerURL + "signup", user, { responseType: 'text' });  
+
+    return this.http.get(this.javaServerURL + "signup", { responseType: 'text' });  
   }
 }

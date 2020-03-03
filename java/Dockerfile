@@ -2,7 +2,7 @@
 FROM maven:3.6.1-jdk-8
 
 # set working directory
-WORKDIR /java
+WORKDIR /app-java
 
 # add the POM file
 COPY /java/pom.xml ./
@@ -18,4 +18,6 @@ RUN mvn package
 EXPOSE 4200
 
 # run app
-CMD ["mvn", "exec:java"]
+CMD  ["mvn", "clean"]
+CMD  ["mvn", "install"]
+CMD  ["mvn", "exec:java"]

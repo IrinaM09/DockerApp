@@ -18,6 +18,16 @@ export class AuthComponent implements OnInit {
     this.email = '';
     this.password = '';
   }
+  
+  signup() {
+    this.service.signup().subscribe((res) => {
+      console.log("Success")
+
+    }, (err: HttpErrorResponse) => {
+      console.log("error: " + err);
+
+    });
+  }
 
   login() {
     this.service.login(this.email, this.password).subscribe((res) => {
