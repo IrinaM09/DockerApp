@@ -5,8 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ServiceService {
-
-  private javaServerURL: string = "http://localhost:4201/";
+  private javaServerURL: string = "http://localhost:8080/";
   private pythonServerURL: string = "http://127.0.0.1:5002/";
 
   constructor(private http: HttpClient) { }

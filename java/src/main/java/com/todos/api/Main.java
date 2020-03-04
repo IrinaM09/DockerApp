@@ -15,7 +15,7 @@ import java.util.logging.Level;
 
 public class Main {
     /* Base URI the Grizzly HTTP is listening on */
-    private static final String BASE_URI = "http://localhost:4201";
+    private static final String BASE_URI = "http://localhost:8080";
 
     private static final java.util.logging.Logger LOGGER = Grizzly.logger(HttpServer.class);
 
