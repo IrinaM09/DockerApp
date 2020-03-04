@@ -1,20 +1,19 @@
 version: "3.7"
 services:
-  java:
+  java-app:
     image: neileen/dockerhub_app:java-latest
-    container_name: java_container
+    container_name: java-app
     volumes:
       - ./java:/app-java
     ports:
       - "8080:8080"
 
-  angular:
+  angular-app:
     image: neileen/dockerhub_app:latest
-    container_name: angular_container
+    container_name: angular-app
     volumes:
       - ./angular:/app-angular
     ports:
       - "4200:4200"
     links:
-      - java_container
-	
+      - java-app
