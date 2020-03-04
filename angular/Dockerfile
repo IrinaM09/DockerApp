@@ -9,8 +9,8 @@ COPY /angular/package.json ./package.json
 
 # install
 RUN npm install
-#RUN npm install -g @angular/cli@8.3.25
-#RUN npm install --save-dev @angular-devkit/build-angular
+RUN npm install -g @angular/cli@8.3.25
+RUN npm install --save-dev @angular-devkit/build-angular
 
 # add app
 COPY /angular ./
