@@ -12,6 +12,7 @@ public class RegistrationService {
     @Produces(MediaType.TEXT_PLAIN)
     @Path("signup")
     public String test() {
+        System.out.println("working!");
         return "Server is working!";
     }
 }
