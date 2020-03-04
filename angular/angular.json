@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "DockerApp"
+    }
+  },
+  "defaultProject": "DockerApp",
+  "cli": {
+    "analytics": false
+  }
 }
