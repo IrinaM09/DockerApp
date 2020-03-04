@@ -7,7 +7,8 @@ services:
       - ./java:/app-java
     ports:
       - "8080:8080"
-
+    # interactive mode used for java server to work
+    tty: true
   angular-app:
     image: neileen/dockerhub_app:latest
     container_name: angular-app
