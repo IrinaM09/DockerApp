@@ -1,32 +1,30 @@
 <div class="main__container">
     <div class="login-card">
-  
-      <main class="login-content">
-        <span class="login-header">Login</span>
-        <!-- login form -->
-        <form class="login-form" #authform="ngForm">
-          <input ngModel type="email" autofocus [(ngModel)]="email" placeholder="Email" name="email" class="login-input" required>
-          <input ngModel type="password" [(ngModel)]="password" placeholder="Password" name="password" class="login-input" minlength="1"
-            required>
-          <input type="submit" name="submit" value="Login" class="login-btn" [class.btn-disabled]="!authform.form.valid"
-            [disabled]="!authform.form.valid" (click)="login()">
-        </form>
 
-        <!-- Sign Up / Guest  -->
-        <div class="signup-link-wrapper">
-          <span class="signup-notice">Don't have an account?</span>
-          <a class="signup-link" (click)="signup()">Sign up</a>
-        </div>
-        <div class="signup-link-wrapper">
-          <span class="signup-link" routerLink="/home">Sign as a guest</span>
-        </div>
-      </main>
-  
-      <!-- Welcome Message -->
-      <aside class="login-aside">
-        <div class="login-aside-overlay"></div>
-        <h1 class="login-welcome-text">Welcome</h1>
-        <hr class="login-aside-hr">
-      </aside>
+        <main class="login-content">
+            <span class="login-header">Login</span>
+            <!-- login form -->
+            <form class="login-form" #authform="ngForm">
+                <input ngModel type="email" autofocus [(ngModel)]="email" placeholder="Email" name="email" class="login-input" required>
+                <input ngModel type="password" [(ngModel)]="password" placeholder="Password" name="password" class="login-input" minlength="1" required>
+                <input type="submit" name="submit" value="Login" class="login-btn" [class.btn-disabled]="!authform.form.valid" [disabled]="!authform.form.valid" (click)="login()">
+            </form>
+
+            <!-- Sign Up / Guest  -->
+            <div class="signup-link-wrapper">
+                <span>Don't have an account?</span>
+                <button mat-button class="signup-link" (click)="signup()">Sign up</button>
+            </div>
+            <div class="signup-link-wrapper">
+                <button mat-button class="signup-link" routerLink="/home">Sign as a guest</button>
+            </div>
+        </main>
+
+        <!-- Welcome Message -->
+        <aside class="login-aside">
+            <div class="login-aside-overlay"></div>
+            <h1 class="login-welcome-text">Welcome</h1>
+            <hr class="login-aside-hr">
+        </aside>
     </div>
-  </div>
+</div>
