@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="76053b68-78fb-4f09-bb55-da24bca3f874" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/todos/api/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/todos/api/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/todos/api/rest/RegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/todos/api/rest/RegistrationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -139,7 +138,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

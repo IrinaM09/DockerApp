@@ -5,7 +5,7 @@ FROM python:3.7
 WORKDIR /app-python
 
 # Install requirements.txt
-ADD /app-python/requirements.txt ./requirements.txt
+ADD /python/requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 
 # add app
