@@ -15,4 +15,4 @@ COPY . /app-python
 EXPOSE 5002
 
 # start app
-CMD python main.py
+CMD python ./main.py
