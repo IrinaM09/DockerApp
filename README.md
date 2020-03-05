@@ -9,8 +9,8 @@ You can enter as a guest or sign up for an account in which case you can save an
 - Elasticsearch
 - Grafana
 
-![Imgur Image](https://i.imgur.com/itKquVC.png)
+![Imgur Image](https://i.imgur.com/qfyrgvk.png)
 
 ```
-More information can be found in the document Weather App - Mitocaru Irina 343 C1
+More information can be found in the document Weather App
 ```
