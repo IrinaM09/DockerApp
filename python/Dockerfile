@@ -9,7 +9,7 @@ ADD /python/requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 
 # add app
-COPY . /app-python
+COPY /python ./
 
 # listen on port
 EXPOSE 5002
