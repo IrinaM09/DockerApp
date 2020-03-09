@@ -9,7 +9,6 @@ import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
 
-import java.io.IOException;
 import java.net.URI;
 import java.util.logging.Level;
 

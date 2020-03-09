@@ -21,9 +21,14 @@ export class ServiceService {
     return this.http.post(this.pythonServerURL + "login", user, { responseType: 'text' });  
   }
 
-  signup() {
+  signup(email: string, password: string) {
     console.log("sending to " + this.javaServerURL + "signup");
+   
+    var user = {
+      "email": email,
+      "password": password
+    }
 
-    return this.http.get(this.javaServerURL + "signup", { responseType: 'text' });  
+    return this.http.post(this.javaServerURL + "signup", user, { responseType: 'text' });  
   }
 }

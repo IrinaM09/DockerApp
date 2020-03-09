@@ -1,0 +1,13 @@
+<div class="main__container">
+    <div class="signup-card">
+        <main class="signup-content">
+            <span class="signup-header">Sign up</span>
+            <!-- sign up form -->
+            <form class="signup-form" #registerform="ngForm">
+                <input ngModel type="email" autofocus [(ngModel)]="email" placeholder="Email" name="email" class="signup-input" required>
+                <input ngModel type="password" [(ngModel)]="password" placeholder="Password" name="password" class="signup-input" minlength="1" required>
+                <input type="submit" name="submit" value="Send" class="signup-btn" [class.btn-disabled]="!registerform.form.valid" [disabled]="!registerform.form.valid" (click)="signup()">
+            </form>
+        </main>
+    </div>
+</div>
