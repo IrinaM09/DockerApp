@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76053b68-78fb-4f09-bb55-da24bca3f874" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_carrotsearch_hppc_0_7_1.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_dataformat_jackson_dataformat_cbor_2_8_11.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_dataformat_jackson_dataformat_smile_2_8_11.xml" afterDir="false" />
@@ -65,6 +66,10 @@
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/todos/api/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/todos/api/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/todos/api/rest/RegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/todos/api/rest/RegistrationService.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/../Weather App - Mitocaru Irina 343C1 - v1.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../Weather App - Mitocaru Irina 343C1 - v1.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../~$ather App - Mitocaru Irina 343C1 - v1.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../~$ather App - Mitocaru Irina 343C1 - v1.docx" afterDir="false" />
+>>>>>>> 2a06fcdf5f16766242d0a5df4038d03550d91ab5
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -293,6 +298,7 @@
         <entry key="MAIN">
           <value>
             <State>
+<<<<<<< HEAD
               <option name="RECENTLY_FILTERED_USER_GROUPS">
                 <collection />
               </option>
@@ -314,6 +320,10 @@
         <entry key="User">
           <value>
             <list />
+=======
+              <option name="COLUMN_ORDER" />
+            </State>
+>>>>>>> 2a06fcdf5f16766242d0a5df4038d03550d91ab5
           </value>
         </entry>
       </map>

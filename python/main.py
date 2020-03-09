@@ -51,50 +51,51 @@ def login():
     password = data_received['password']
     print(data_received)
 
-    try:
-        es.indices.refresh(index=users_index)
+    return 'ok'
+    # try:
+    #     es.indices.refresh(index=users_index)
 
-        # search for user with given credentials
-        res = es.search(index=users_index, body={"query": {
-            "bool": {
-                "must": [
-                    {"match_phrase": {"email": email}},
-                    {"match_phrase": {"password": password}}
-                ]
-            }
-        }})
+    #     # search for user with given credentials
+    #     res = es.search(index=users_index, body={"query": {
+    #         "bool": {
+    #             "must": [
+    #                 {"match_phrase": {"email": email}},
+    #                 {"match_phrase": {"password": password}}
+    #             ]
+    #         }
+    #     }})
 
-        if not res['hits']['hits']:
-            print("No user found with given credentials")
-            return {}
+    #     if not res['hits']['hits']:
+    #         print("No user found with given credentials")
+    #         return {}
 
-        print("%d users found: %s \n" % (res['hits']['total']['value'], res))
+    #     print("%d users found: %s \n" % (res['hits']['total']['value'], res))
 
-        # get the data from the query and store it in a array of books
-        for user in res['hits']['hits']:
-            user = {
-                "email": user['_source']['email'],
-                "username": user['_source']['username'],
-                "password": user['_source']['password'],
-                "accessToken": user['_source']['accessToken'],
-            }
-            return user
-        else:
-            return {}
+    #     # get the data from the query and store it in a array of books
+    #     for user in res['hits']['hits']:
+    #         user = {
+    #             "email": user['_source']['email'],
+    #             "username": user['_source']['username'],
+    #             "password": user['_source']['password'],
+    #             "accessToken": user['_source']['accessToken'],
+    #         }
+    #         return user
+    #     else:
+    #         return {}
 
-    except elasticsearch.exceptions.NotFoundError:
-        print("Index users Not Found")
-        return {}
+    # except elasticsearch.exceptions.NotFoundError:
+    #     print("Index users Not Found")
+    #     return {}
 
 def main():
     global es
 
     set_logger()
-    es = connect_to_cluster()
+    #es = connect_to_cluster()
 
 
 if __name__ == '__main__':
     main()
 
     # run Flask server
-    app.run(port=5002)
+    app.run(host='0.0.0.0', port=5002)
