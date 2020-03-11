@@ -40,7 +40,14 @@ public class RegistrationService {
             /* Initiate RestHighLevelClient Client */
             client = new RestHighLevelClient(
                     RestClient.builder(
-                            new HttpHost("0.0.0.0", 9201, "http")));
+                            new HttpHost("0.0.0.0", 9200, "http")));
+//            String hostname = System.getenv("ES_URL");
+//            String port = System.getenv("ES_PORT");
+//            System.out.println("Environment variables: " + hostname + ": " + port);
+//
+//            client = new RestHighLevelClient(
+//                    RestClient.builder(
+//                            new HttpHost(hostname, Integer.valueOf(port), "http")));
 
             /* Verify it cluster is healthy */
             ClusterHealthRequest request = new ClusterHealthRequest()
