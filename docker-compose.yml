@@ -3,13 +3,9 @@ services:
   java-app:
     image: neileen/dockerhub_app:java-latest
     ports:
-<<<<<<< HEAD
-      - "8080"
-    # interactive mode used for java server to work
-=======
       - "8080:8080"
->>>>>>> 2a06fcdf5f16766242d0a5df4038d03550d91ab5
-    tty: true
+    depends_on:
+      - es
 
   angular-app:
     image: neileen/dockerhub_app:latest
@@ -18,8 +14,24 @@ services:
     links:
       - java-app
       - python-app
+    depends_on:
+      - es
 
   python-app:
     image: neileen/dockerhub_app:python-latest
     ports:
       - "5002:5002"
+    depends_on:
+      - es
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.8.7
+    environment:
+      - http.host=0.0.0.0
+      - transport.host=0.0.0.0
+      - transport.tcp.port=9200
+      - transport.publish_port=9200
+      - client.transport.sniff=false
+      - xpack.security.enabled=false
+    ports:
+      - "9201:9200"
+      - "9300:9300"
