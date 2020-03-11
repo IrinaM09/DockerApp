@@ -40,7 +40,7 @@ public class RegistrationService {
             /* Initiate RestHighLevelClient Client */
             client = new RestHighLevelClient(
                     RestClient.builder(
-                            new HttpHost("0.0.0.0", 9200, "http")));
+                            new HttpHost("es", 9200, "http")));
 //            String hostname = System.getenv("ES_URL");
 //            String port = System.getenv("ES_PORT");
 //            System.out.println("Environment variables: " + hostname + ": " + port);
