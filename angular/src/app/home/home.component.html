@@ -1,1 +1,48 @@
-<p>home works!</p>
+<app-header></app-header>
+
+<div class="main">
+    <!-- Add City and Explore Container -->
+    <div class="container" *ngIf="!findCityCard && !explorer">
+        <div class="card">
+            <div>
+                <button mat-button class="card-title" (click)="loadFindCityCard()">Add city</button>
+            </div>
+        </div>
+        <button mat-button class="explore" (click)="loadExplorer()">Explore</button>
+    </div>
+
+    <!-- Find City Container -->
+    <div class="find-city-card" *ngIf="findCityCard">
+        <button *ngIf="enterHit" style="justify-self: end;" mat-button (click)="closeFindCityCard()">X</button>
+        <h3 class="find-city-card-title">Search for a city
+            <button *ngIf="!enterHit" style="justify-self: end;" mat-button (click)="closeFindCityCard()">X</button>
+        </h3>
+        <input type="text" autofocus placeholder="Search" [(ngModel)]="cityName" (keyup.enter)="onEnter($event)" class="find-city-input">
+
+        <!-- Fire Dynamic City Card -->
+        <div *ngIf="enterHit">
+            <div class="weather_card">
+                <div style="padding-bottom: 0.2rem;" align="center">
+                    <div class="cityName_title" id="city"></div>
+                    <div class="state_subtitle" id="description"></div>
+                </div>
+                <div [style.backgroundImage]="'url('+ bgImage +')'" class="backgroundImage"></div>
+                <mat-grid-list cols="2">
+                    <mat-grid-tile class="min_max_text" id="maxTemp">
+                    </mat-grid-tile>
+                    <mat-grid-tile style="text-align: end;" class="min_max_text" id="minTemp">
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </div>
+            <button mat-raised-button style="background-color: #443282; color: white;"> ADD </button>
+        </div>
+    </div>
+
+    <!-- All Cities Container -->
+    <div class="all-cities-card" *ngIf="explorer">
+        <button *ngIf="enterHit" style="justify-self: end;" mat-button (click)="closeExplorer()">X</button>
+        <h3 class="find-city-card-title">Cities
+            <button *ngIf="!enterHit" style="justify-self: end;" mat-button (click)="closeExplorer()">X</button>
+        </h3>
+    </div>
+</div>

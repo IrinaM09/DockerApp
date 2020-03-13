@@ -1,0 +1,146 @@
+.main {
+    display: grid;
+    flex-flow: row wrap;
+    height: -webkit-fill-available;
+    background-image: linear-gradient(to top, #e0e0e0 0%, #66a6ff 100%);
+}
+
+.container {
+    display: inline-flex;
+    justify-content: center;
+}
+
+.card {
+    background-image: url(../../assets/newcity.png);
+    box-shadow: 0 0 2rem rgba(0, 0, 255, 0.1);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    padding: 2rem;
+    margin: 2rem;
+    width: 19rem;
+    height: 30rem;
+    justify-self: center;
+    justify-items: center;
+    cursor: pointer;
+    border-radius: 1.75rem;
+    animation: slideup 1s ease-in-out, fadein 1.5s ease-in-out 0ms 1;
+    color: #443282;
+}
+
+.card-title {
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+
+.explore {
+    text-transform: uppercase;
+    color: white;
+    height: fit-content;
+    align-self: center;
+    letter-spacing: 0.3rem;
+    font-size: 2.5rem;
+    font-family: 'Allura', cursive;
+}
+
+.find-city-card {
+    background-color: white;
+    box-shadow: 0 0 2rem rgba(0, 0, 255, 0.1);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    padding: 2rem;
+    margin: 2rem;
+    width: fit-content;
+    justify-self: center;
+    justify-items: center;
+    cursor: pointer;
+    border-radius: 1.75rem;
+    animation: slideup 1s ease-in-out, fadein 1.5s ease-in-out 0ms 1;
+    color: #443282;
+}
+
+.find-city-card-title {
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+
+.find-city-input {
+    box-sizing: border-box;
+    width: 20rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    outline: none;
+    border: none;
+    box-shadow: 0 0 2rem 0.15rem rgba(0, 0, 255, 0.1);
+    font-size: 1rem;
+    color: #131F69;
+}
+
+.find-city-input::placeholder {
+    font-size: 1rem;
+    color: #131F69;
+    letter-spacing: 0.1rem;
+}
+
+.all-cities-card {
+    background-color: white;
+    box-shadow: 0 0 2rem rgba(0, 0, 255, 0.1);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    padding: 2rem 2rem 10rem 2rem;
+    margin: 2rem;
+    width: fit-content;
+    justify-self: center;
+    height: 20rem;
+    justify-items: center;
+    cursor: pointer;
+    border-radius: 1.75rem;
+    animation: slideup 1s ease-in-out, fadein 1.5s ease-in-out 0ms 1;
+    color: #443282;
+}
+
+.weather_card {
+    box-shadow: 0 0 2rem rgba(0, 0, 255, 0.1);
+    justify-items: center;
+    padding: 3rem;
+    margin: 2rem;
+    width: 20rem;
+    height: 15rem;
+    cursor: pointer;
+    border-radius: 1.75rem;
+    animation: slideup 1s ease-in-out, fadein 1.25s ease-in-out 0ms 1;
+}
+
+.cityName_title {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    letter-spacing: 0.1rem;
+}
+
+.state_subtitle {
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+}
+
+.backgroundImage {
+    height: 13rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.min_max_text {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.min_max_value {
+    font-size: 1.5rem;
+}
+
+mat-grid-tile {
+    padding-top: 0!important;
+}

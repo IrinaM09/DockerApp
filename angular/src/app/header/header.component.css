@@ -1,0 +1,10 @@
+.example-fill-remaining-space {
+    flex: 1 1 auto;
+}
+
+mat-toolbar {
+    font-family: 'Junge', serif;
+    font-weight: bolder;
+    color: #443282;
+    background: white;
+}
