@@ -7,6 +7,10 @@ services:
       - "9300:9300"
     environment:
       - discovery.type=single-node
+#    volumes:
+#      - type: bind
+#        source: E:\Docker\DockerApp\elasticsearch
+#        target: /elasticsearch
     networks:
       - elastic
 
@@ -39,6 +43,27 @@ services:
       - es
     networks:
       - elastic
+
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: E:\Docker\DockerApp\prometheus
+        target: /prometheus
+    command:
+      - '--config.file=/prometheus/prometheus.yml'
+    networks:
+      - elastic
+
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
 
 
 networks:
