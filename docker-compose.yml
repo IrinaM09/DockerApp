@@ -7,10 +7,8 @@ services:
       - "9300:9300"
     environment:
       - discovery.type=single-node
-#    volumes:
-#      - type: bind
-#        source: E:\Docker\DockerApp\elasticsearch
-#        target: /elasticsearch
+    volumes:
+     - es-data:/elasticsearch
     networks:
       - elastic
 
@@ -52,7 +50,7 @@ services:
     restart: unless-stopped
     volumes:
       - type: bind
-        source: E:\Docker\DockerApp\prometheus
+        source: D:\DockerApp\prometheus
         target: /prometheus
     command:
       - '--config.file=/prometheus/prometheus.yml'
@@ -69,3 +67,7 @@ services:
 networks:
   elastic:
     driver: bridge
+
+volumes:
+  es-data:
+    driver: local

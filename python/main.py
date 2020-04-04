@@ -12,6 +12,7 @@ from flask_cors import CORS
 
 doc = {}
 users_index = "users"
+MAX_SIZE = 1000
 app = Flask(__name__)
 api = Api(app)
 CORS(app)
@@ -51,47 +52,36 @@ def login():
     password = data_received['password']
     print(data_received)
 
-    return 'ok'
-    # try:
-    #     es.indices.refresh(index=users_index)
+    try:
+        es.indices.refresh(index=users_index)
 
-    #     # search for user with given credentials
-    #     res = es.search(index=users_index, body={"query": {
-    #         "bool": {
-    #             "must": [
-    #                 {"match_phrase": {"email": email}},
-    #                 {"match_phrase": {"password": password}}
-    #             ]
-    #         }
-    #     }})
+        # search for user with given credentials
+        res = es.search(index=users_index, body={"query": {
+                "bool": {
+                    "must": [
+                        {"match_phrase": {"email": email}},
+                        {"match_phrase": {"password": password}}
+                    ]
+                }},
+                "size": MAX_SIZE
+            })
 
-    #     if not res['hits']['hits']:
-    #         print("No user found with given credentials")
-    #         return {}
+        if not res['hits']['hits']:
+            print("No user found with given credentials")
+            return "failure"
+        else:
+            print("%d users found: %s" % (res['hits']['total']['value'], res))
+            return "success" 
 
-    #     print("%d users found: %s \n" % (res['hits']['total']['value'], res))
-
-    #     # get the data from the query and store it in a array of books
-    #     for user in res['hits']['hits']:
-    #         user = {
-    #             "email": user['_source']['email'],
-    #             "username": user['_source']['username'],
-    #             "password": user['_source']['password'],
-    #             "accessToken": user['_source']['accessToken'],
-    #         }
-    #         return user
-    #     else:
-    #         return {}
-
-    # except elasticsearch.exceptions.NotFoundError:
-    #     print("Index users Not Found")
-    #     return {}
+    except elasticsearch.exceptions.NotFoundError:
+        print("Index users Not Found")
+        return "error"
 
 def main():
     global es
 
     set_logger()
-    #es = connect_to_cluster()
+    es = connect_to_cluster()
 
 
 if __name__ == '__main__':

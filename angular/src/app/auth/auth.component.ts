@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from 'src/service.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -11,7 +12,9 @@ export class AuthComponent implements OnInit {
   email: string;
   password: string;
 
-  constructor(private service: ServiceService) {
+  constructor(
+  private router: Router,
+  private service: ServiceService) {
   }
 
   ngOnInit() {
@@ -21,8 +24,10 @@ export class AuthComponent implements OnInit {
 
   login() {
     this.service.login(this.email, this.password).subscribe((res) => {
-      console.log("Success")
-
+      console.log(res)
+      if (res == "success") {
+        this.router.navigateByUrl("/home"); // Main page
+      }
     }, (err: HttpErrorResponse) => {
       console.log("error: " + err);
 
