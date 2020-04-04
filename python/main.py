@@ -29,7 +29,7 @@ def connect_to_cluster():
     try:
         global es
 
-        es = Elasticsearch([{'host': 'localhost', 'port': 9201}])
+        es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
         logging.info("Connection to Elasticsearch cluster is working\n")
         return es
 
