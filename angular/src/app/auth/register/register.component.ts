@@ -23,7 +23,8 @@ export class RegisterComponent implements OnInit {
   
   signup() {
     this.service.signup(this.email, this.password).subscribe((res) => {
-      console.log("Success")
+      console.log(res)
+
       this.router.navigate(['/auth']);
     }, (err: HttpErrorResponse) => {
       console.log("error: " + err);

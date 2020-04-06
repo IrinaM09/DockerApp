@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { WeatherInfo } from './app/models/weather-info';
+import { User } from './app/models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class ServiceService {
       "password": password
     }
 
-    return this.http.post(this.pythonServerURL + "login", user, { responseType: 'text' });
+    return this.http.post<User>(this.pythonServerURL + "login", user);
   }
 
   signup(email: string, password: string) {
@@ -30,7 +31,7 @@ export class ServiceService {
       "password": password
     }
 
-    return this.http.post(this.javaServerURL + "signup", user, { responseType: 'text' });
+    return this.http.post<User>(this.javaServerURL + "signup", user);
   }
 
   getWeatherData(city: string) {
@@ -40,5 +41,26 @@ export class ServiceService {
     params = params.append('cityName', city);
 
     return this.http.get<WeatherInfo>(this.javaServerURL + "getWeatherInfo", { params });
+  }
+
+  addCity(city: string, token: string) {
+    console.log("sending to " + this.pythonServerURL + "add_city");
+
+    var user = {
+      "accessToken": token,
+      "city": city
+    }
+
+    return this.http.post<User>(this.pythonServerURL + "add_city", user);
+  }
+
+  getCities(token: string) {
+    console.log("sending to " + this.pythonServerURL + "get_cities");
+
+    var user = {
+      "accessToken": token
+    }
+    
+    return this.http.post<User>(this.pythonServerURL + "get_cities", user);
   }
 }

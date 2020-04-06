@@ -16,6 +16,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { HeaderComponent } from '../app/header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
   ],
   imports: [
     BrowserModule,
+    MatIconModule,
+    MatListModule,
     HttpClientModule,
     FormsModule,
     AppRoutingModule,

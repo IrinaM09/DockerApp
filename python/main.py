@@ -29,7 +29,8 @@ def connect_to_cluster():
     try:
         global es
 
-        es = Elasticsearch([{'host': 'es', 'port': 9200}])
+        # es = Elasticsearch([{'host': 'es', 'port': 9200}])
+        es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
         logging.info("Connection to Elasticsearch cluster is working\n")
         return es
 
@@ -57,25 +58,127 @@ def login():
 
         # search for user with given credentials
         res = es.search(index=users_index, body={"query": {
-                "bool": {
-                    "must": [
-                        {"match_phrase": {"email": email}},
-                        {"match_phrase": {"password": password}}
-                    ]
-                }},
-                "size": MAX_SIZE
-            })
+            "bool": {
+                "must": [
+                    {"match_phrase": {"email": email}},
+                    {"match_phrase": {"password": password}}
+                ]
+            }},
+            "size": MAX_SIZE
+        })
 
         if not res['hits']['hits']:
             print("No user found with given credentials")
-            return "failure"
-        else:
-            print("%d users found: %s" % (res['hits']['total']['value'], res))
-            return "success" 
+            return {}
+
+        # get the data from the query and store it in a array of users
+        for user in res['hits']['hits']:
+            user = {
+                "email": user['_source']['email'],
+                "password": user['_source']['password'],
+                "accessToken": user['_source']['accessToken'],
+                "cities": user['_source']['cities']
+            }
+            return user
 
     except elasticsearch.exceptions.NotFoundError:
         print("Index users Not Found")
-        return "error"
+        return {}
+
+
+# add a city to a user
+@app.route("/add_city", methods=['POST'])
+def add_city():
+    global es, res
+    global users_index
+
+    print("[add_city] started")
+
+    # parse the received data
+    data_received = request.get_json()
+    accessToken = data_received['accessToken']
+    city = data_received['city']
+    print(data_received)
+
+    try:
+        es.indices.refresh(index=users_index)
+
+        # search for user with given credentials
+        res = es.search(index=users_index, body={"query": {"match_phrase": {"accessToken": {"query": accessToken}}}})
+
+        if not res['hits']['hits']:
+            print("No user found with given token")
+            return {}
+
+        # get the data from the query and store it in a array of users
+        for user in res['hits']['hits']:
+            user = {
+                "email": user['_source']['email'],
+                "password": user['_source']['password'],
+                "accessToken": user['_source']['accessToken'],
+                "cities": user['_source']['cities']
+            }
+
+            # add the new city to the list
+            new_city_list = []
+            for i in user["cities"]:
+                if i not in new_city_list:
+                    new_city_list.append(i)
+
+            new_city_list.append(city)
+
+            res = es.update(index=users_index,
+                            doc_type='_doc',
+                            id=user["email"],
+                            body={"doc": {
+                                'email': user["email"],
+                                'password': user["password"],
+                                'accessToken': user["accessToken"],
+                                'cities': new_city_list
+                            }})
+        return res
+
+    except elasticsearch.exceptions.NotFoundError:
+        print("Index users Not Found")
+        return {}
+
+
+# get the city list of a user
+@app.route("/get_cities", methods=['POST'])
+def get_cities():
+    global es, res
+    global users_index
+
+    print("[get_cities] started")
+
+    # parse the received data
+    data_received = request.get_json()
+    accessToken = data_received['accessToken']
+    print(data_received)
+
+    try:
+        es.indices.refresh(index=users_index)
+
+        # search for user with given credentials
+        res = es.search(index=users_index, body={"query": {"match_phrase": {"accessToken": {"query": accessToken}}}})
+
+        if not res['hits']['hits']:
+            print("No user found with given token")
+            return {}
+
+        # get cities list
+        user = {}
+        for user in res['hits']['hits']:
+            user = {
+                "cities": user['_source']['cities']
+            }
+
+        return user
+
+    except elasticsearch.exceptions.NotFoundError:
+        print("Index users Not Found")
+        return {}
+
 
 def main():
     global es

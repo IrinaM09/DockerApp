@@ -1,7 +1,7 @@
 .main {
+    height: 100%;
     display: grid;
     flex-flow: row wrap;
-    height: -webkit-fill-available;
     background-image: linear-gradient(to top, #e0e0e0 0%, #66a6ff 100%);
 }
 
@@ -43,6 +43,15 @@
     font-family: 'Allura', cursive;
 }
 
+.go-back {
+    color: white;
+    height: fit-content;
+    align-self: center;
+    letter-spacing: 0.3rem;
+    font-size: 2.5rem;
+    font-family: 'Allura', cursive;
+}
+
 .find-city-card {
     background-color: white;
     box-shadow: 0 0 2rem rgba(0, 0, 255, 0.1);
@@ -50,7 +59,9 @@
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
     padding: 2rem;
-    margin: 2rem;
+    text-align: center;
+    margin-top: 2vw;
+    margin-bottom: 30vw;
     width: fit-content;
     justify-self: center;
     justify-items: center;
@@ -90,15 +101,30 @@
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
     padding: 2rem 2rem 10rem 2rem;
-    margin: 2rem;
-    width: fit-content;
+    margin-top: 2rem;
+    margin-bottom: 10vw;
+    width: 60vw;
     justify-self: center;
-    height: 20rem;
-    justify-items: center;
+    height: 20vw;
     cursor: pointer;
     border-radius: 1.75rem;
     animation: slideup 1s ease-in-out, fadein 1.5s ease-in-out 0ms 1;
     color: #443282;
+}
+
+iframe {
+    margin: 2rem;
+    box-shadow: 0 0 2rem rgba(0, 0, 255, 0.1);
+    display: grid;
+    border-radius: 1.5rem;
+    width: 70vw;
+    justify-self: center;
+    height: 40vw;
+    overflow-y: hidden;
+}
+
+.mat-subheader {
+    font-size: large;
 }
 
 .weather_card {
@@ -135,6 +161,7 @@
 .min_max_text {
     font-size: 1.5rem;
     font-weight: bold;
+    text-align: left;
 }
 
 .min_max_value {

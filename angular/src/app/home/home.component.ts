@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { ServiceService } from 'src/service.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatIconRegistry } from '@angular/material';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -14,15 +16,34 @@ export class HomeComponent implements OnInit, OnDestroy {
   enterHit: boolean;
   cityName: string;
   bgImage: string;
+  user: string;
+  token: string;
+  openWiki: boolean;
+  url: SafeResourceUrl;
+
+  user_cities; 
+  recommended_cities = ["helsinki", "budapest", "paris"];
 
   constructor(
     private detectChange: ChangeDetectorRef,
-    private service: ServiceService) {
+    private service: ServiceService,
+    private iconRegistry: MatIconRegistry,
+    private sanitizer: DomSanitizer) {
+      iconRegistry.addSvgIcon(
+        'location_city',
+        sanitizer.bypassSecurityTrustResourceUrl('assets/location_city.svg'));
+      iconRegistry.addSvgIcon(
+        'mood',
+        sanitizer.bypassSecurityTrustResourceUrl('assets/mood.svg'));
   }
 
   ngOnInit() {
     this.bgImage = '../../assets/sun.png';
     this.cityName = '';
+    this.user = localStorage.getItem('email').split('@')[0];
+    this.token = localStorage.getItem('accessToken');
+
+    console.log("current user: " + this.user + ", " + this.token);
   }
 
   ngOnDestroy() {
@@ -31,7 +52,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   onEnter(event) {
     this.cityName = event.target.value;
     this.enterHit = true;
-    this.getWeatherData(this.cityName);
+    this.getWeatherData();
   }
 
   loadFindCityCard() {
@@ -45,16 +66,33 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   loadExplorer() {
     this.explorer = true;
+    this.openWiki = false;
+
+    this.service.getCities(this.token).subscribe((res) => {
+      console.log(res)
+      this.user_cities = res.cities;
+
+    }, (err: HttpErrorResponse) => {
+      console.log("error: " + err);
+
+      // default values
+     this.user_cities = ["roma", "bucharest"];
+    });
   }
 
   closeExplorer() {
     this.explorer = false;
   }
 
-  getWeatherData(cityName: string) {
+  openWikipedia(city: string) {
+    this.openWiki = true;
+    this.url = this.sanitizer.bypassSecurityTrustResourceUrl("https://en.wikipedia.org/wiki/" + city);
+  }
+
+  getWeatherData() {
     console.log("city name: " + this.cityName)
 
-    this.service.getWeatherData(cityName).subscribe((res) => {
+    this.service.getWeatherData(this.cityName).subscribe((res) => {
       console.log(res)
 
       var state = res.weatherState;
@@ -70,6 +108,21 @@ export class HomeComponent implements OnInit, OnDestroy {
       document.getElementById("description").innerHTML = res.description;
       document.getElementById("maxTemp").innerHTML = 'max: ' + res.maxTemperature.toString() + '°';
       document.getElementById("minTemp").innerHTML = 'min: ' + res.minTemperature.toString() + '°';
+
+    }, (err: HttpErrorResponse) => {
+      console.log("error: " + err);
+
+      // default values
+      document.getElementById("city").innerHTML = 'Bucharest 20°';
+      document.getElementById("state").innerHTML = 'sunny';
+      document.getElementById("maxTemp").innerHTML = 'max: 24°';
+      document.getElementById("minTemp").innerHTML = 'min: 14°';
+    });
+  }
+
+  addCity() {
+    this.service.addCity(this.cityName, this.token).subscribe((res) => {
+      console.log(res)
 
     }, (err: HttpErrorResponse) => {
       console.log("error: " + err);

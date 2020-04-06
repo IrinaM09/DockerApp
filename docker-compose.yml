@@ -50,7 +50,7 @@ services:
     restart: unless-stopped
     volumes:
       - type: bind
-        source: D:\DockerApp\prometheus
+        source: E:\Docker\DockerApp\prometheus
         target: /prometheus
     command:
       - '--config.file=/prometheus/prometheus.yml'

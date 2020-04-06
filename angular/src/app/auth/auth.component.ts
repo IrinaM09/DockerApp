@@ -25,7 +25,10 @@ export class AuthComponent implements OnInit {
   login() {
     this.service.login(this.email, this.password).subscribe((res) => {
       console.log(res)
-      if (res == "success") {
+
+      if (res.accessToken !== undefined) {
+        localStorage.setItem('email', res.email);
+        localStorage.setItem('accessToken', res.accessToken);
         this.router.navigateByUrl("/home"); // Main page
       }
     }, (err: HttpErrorResponse) => {
