@@ -123,12 +123,8 @@ def add_city():
             }
 
             # add the new city to the list
-            new_city_list = []
-            for i in user["cities"]:
-                if i not in new_city_list:
-                    new_city_list.append(i)
-
-            new_city_list.append(city)
+            if city not in user["cities"]:
+                user["cities"].append(city)
 
             res = es.update(index=users_index,
                             doc_type='_doc',
@@ -137,7 +133,7 @@ def add_city():
                                 'email': user["email"],
                                 'password': user["password"],
                                 'accessToken': user["accessToken"],
-                                'cities': new_city_list
+                                'cities': user["cities"]
                             }})
         return res
 

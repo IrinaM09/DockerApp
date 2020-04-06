@@ -3,6 +3,7 @@ import { ServiceService } from 'src/service.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -27,6 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private detectChange: ChangeDetectorRef,
     private service: ServiceService,
+    private toastr: ToastrService,
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer) {
       iconRegistry.addSvgIcon(
@@ -123,6 +125,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   addCity() {
     this.service.addCity(this.cityName, this.token).subscribe((res) => {
       console.log(res)
+
+      this.toastr.info(null, 'We memorized this city for you', {
+        tapToDismiss: true,
+        positionClass: 'toast-bottom-center'
+      });
 
     }, (err: HttpErrorResponse) => {
       console.log("error: " + err);

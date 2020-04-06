@@ -18,6 +18,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {MatIconModule} from '@angular/material/icon';
     HeaderComponent
   ],
   imports: [
+    ToastrModule.forRoot(),
     BrowserModule,
     MatIconModule,
     MatListModule,
