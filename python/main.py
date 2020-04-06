@@ -57,15 +57,17 @@ def login():
         es.indices.refresh(index=users_index)
 
         # search for user with given credentials
-        res = es.search(index=users_index, body={"query": {
-            "bool": {
-                "must": [
-                    {"match_phrase": {"email": email}},
-                    {"match_phrase": {"password": password}}
-                ]
-            }},
-            "size": MAX_SIZE
-        })
+        res = es.search(index=users_index,
+                        body={"query": {
+                            "bool": {
+                                "must": [
+                                    {"match_phrase": {"email": email}},
+                                    {"match_phrase": {"password": password}}
+                                ]
+                            }},
+                            "size": MAX_SIZE
+                        },
+                        request_cache=True)
 
         if not res['hits']['hits']:
             print("No user found with given credentials")
@@ -104,7 +106,8 @@ def add_city():
         es.indices.refresh(index=users_index)
 
         # search for user with given credentials
-        res = es.search(index=users_index, body={"query": {"match_phrase": {"accessToken": {"query": accessToken}}}})
+        res = es.search(index=users_index, body={"query": {"match_phrase": {"accessToken": {"query": accessToken}}}},
+                        request_cache=True)
 
         if not res['hits']['hits']:
             print("No user found with given token")
@@ -160,7 +163,8 @@ def get_cities():
         es.indices.refresh(index=users_index)
 
         # search for user with given credentials
-        res = es.search(index=users_index, body={"query": {"match_phrase": {"accessToken": {"query": accessToken}}}})
+        res = es.search(index=users_index, body={"query": {"match_phrase": {"accessToken": {"query": accessToken}}}},
+                        request_cache=True)
 
         if not res['hits']['hits']:
             print("No user found with given token")
