@@ -43,7 +43,7 @@ public class RegistrationService {
             client = new RestHighLevelClient(
                     RestClient.builder(
                             // new HttpHost("es", 9200, "http")));
-                            new HttpHost("localhost", 9200, "http")));
+                            new HttpHost("es", 9200, "http")));
 
             /* Verify it cluster is healthy */
             ClusterHealthRequest request = new ClusterHealthRequest()

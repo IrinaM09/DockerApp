@@ -50,7 +50,7 @@ services:
     restart: unless-stopped
     volumes:
       - type: bind
-        source: E:\Docker\DockerApp\prometheus
+        source: D:\DockerApp\prometheus
         target: /prometheus
     command:
       - '--config.file=/prometheus/prometheus.yml'
@@ -62,7 +62,8 @@ services:
     image: grafana/grafana
     ports:
       - "3000:3000"
-
+    volumes:
+     - grafana-data:/grafana
 
 networks:
   elastic:
@@ -70,4 +71,6 @@ networks:
 
 volumes:
   es-data:
+    driver: local
+  grafana-data:
     driver: local
