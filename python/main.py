@@ -7,6 +7,7 @@ import requests
 from flask import Flask, request
 from flask_restful import Api
 from flask_cors import CORS
+from prometheus_flask_exporter import PrometheusMetrics
 
 # Author: Irina Mitocaru
 
@@ -17,7 +18,8 @@ app = Flask(__name__)
 api = Api(app)
 CORS(app)
 es = Elasticsearch()
-
+metrics = PrometheusMetrics(app)
+metrics.info('python_app', 'Application info', version='1.0.3')
 
 # Set logging INFO as default level
 def set_logger():
