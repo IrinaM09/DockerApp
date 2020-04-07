@@ -28,21 +28,43 @@
                 </div>
                 <div [style.backgroundImage]="'url('+ bgImage +')'" class="backgroundImage"></div>
                 <mat-grid-list cols="2">
-                    <mat-grid-tile class="min_max_text" id="maxTemp">
+                    <mat-grid-tile class="min_max_text" id="minTemp">
                     </mat-grid-tile>
-                    <mat-grid-tile style="text-align: end;" class="min_max_text" id="minTemp">
+                    <mat-grid-tile style="text-align: end;" class="min_max_text" id="maxTemp">
                     </mat-grid-tile>
                 </mat-grid-list>
             </div>
-            <button mat-raised-button style="background-color: #443282; color: white;"> ADD </button>
+            <button mat-raised-button style="background-color: #443282; color: white;" (click)="addCity()"> ADD </button>
         </div>
     </div>
 
     <!-- All Cities Container -->
-    <div class="all-cities-card" *ngIf="explorer">
-        <button *ngIf="enterHit" style="justify-self: end;" mat-button (click)="closeExplorer()">X</button>
-        <h3 class="find-city-card-title">Cities
-            <button *ngIf="!enterHit" style="justify-self: end;" mat-button (click)="closeExplorer()">X</button>
-        </h3>
+    <div class="all-cities-card" *ngIf="explorer && !openWiki">
+        <button *ngIf="!enterHit" style="justify-self: end;" mat-button (click)="closeExplorer()">X</button>
+        <mat-list>
+            <!-- What user likes -->
+            <div mat-subheader>What you like</div>
+            <mat-list-item *ngFor="let city of user_cities">
+                <button mat-icon-button style="font-size: medium;" (click)="openWikipedia(city)">
+                    <mat-icon svgIcon="location_city" aria-hidden="false" aria-label="City SVG icon"></mat-icon>
+                    {{city}}
+                </button>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+
+            <!-- Recommended -->
+            <div mat-subheader>Recommended</div>
+            <mat-list-item *ngFor="let city of recommended_cities">
+                <button mat-icon-button style="font-size: medium;" (click)="openWikipedia(city)">
+                    <mat-icon svgIcon="mood" aria-hidden="false" aria-label="Mood SVG icon"></mat-icon>
+                    {{city}}
+                </button>
+            </mat-list-item>
+        </mat-list>
+    </div>
+    <div class="container" *ngIf="openWiki">
+        <iframe [src]="url"></iframe>
+        <button mat-button class="go-back" (click)="loadExplorer()">Back</button>
     </div>
 </div>

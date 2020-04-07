@@ -16,8 +16,10 @@ import org.elasticsearch.common.xcontent.XContentType;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @Path("/")
 public class RegistrationService {
@@ -30,8 +32,8 @@ public class RegistrationService {
     @Path("signup")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.TEXT_PLAIN)
-    public static String elasticsearchRegister(User user) {
+    @Produces(MediaType.APPLICATION_JSON)
+    public static User elasticsearchRegister(User user) {
         RestHighLevelClient client;
 
         System.out.println("Received data: " + user.getEmail() + " " + user.getPassword());
@@ -40,7 +42,8 @@ public class RegistrationService {
             /* Initiate RestHighLevelClient Client */
             client = new RestHighLevelClient(
                     RestClient.builder(
-                            new HttpHost("es", 9200, "http")));
+                            // new HttpHost("es", 9200, "http")));
+                            new HttpHost("localhost", 9200, "http")));
 
             /* Verify it cluster is healthy */
             ClusterHealthRequest request = new ClusterHealthRequest()
@@ -63,12 +66,14 @@ public class RegistrationService {
                     };
 
             client.cluster().healthAsync(request, RequestOptions.DEFAULT, listener);
+            String token = UUID.randomUUID().toString();
 
             /* Save the user in ElasticSearch users index */
             Map<String, String> map = new HashMap<>();
             map.put("password", user.getPassword());
             map.put("email", user.getEmail());
-
+            map.put("accessToken", token);
+            map.put("cities", "");
 
             IndexRequest indexRequest = new IndexRequest("users")
                     .id(user.getEmail())
@@ -78,14 +83,17 @@ public class RegistrationService {
                     .index(indexRequest, RequestOptions.DEFAULT);
 
             System.out.println("Response from Index \"users\": " + indexResponse);
-
             client.close();
 
+            return new User(
+                    user.getEmail(),
+                    user.getPassword(),
+                    token
+                    );
         } catch (Exception e) {
             e.printStackTrace();
 
             return null;
         }
-        return "Success";
     }
 }

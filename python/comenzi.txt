@@ -1,0 +1,23 @@
+To delete all containers including its volumes use,
+
+docker rm -vf $(docker ps -a -q)
+
+
+To delete all the images,
+
+docker rmi -f $(docker images -a -q)
+
+
+elasticsearch:
+
+docker run -p 9200:9200 -e "discovery.type=single-node" -v es-data:/elasticsearch docker.elastic.co/elasticsearch/elasticsearch:7.6.1
+
+
+!!!
+S-a facut cache prin Elasticsearch.
+Dimensiunea cache-ului este de 1% din Heap (1GB), adica cache = 10 MB
+Cache-ul se face la nivelul metodei, in general metodele avantajate sunt cele de cautare a
+unui user dupa access token si de autentificare:
+
+http://localhost:9200/_stats/request_cache?human
+

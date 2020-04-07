@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from 'src/service.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-auth',
@@ -14,6 +15,7 @@ export class AuthComponent implements OnInit {
 
   constructor(
   private router: Router,
+  private toastr: ToastrService,
   private service: ServiceService) {
   }
 
@@ -25,12 +27,24 @@ export class AuthComponent implements OnInit {
   login() {
     this.service.login(this.email, this.password).subscribe((res) => {
       console.log(res)
-      if (res == "success") {
+
+      if (res.accessToken !== undefined) {
+        localStorage.setItem('email', res.email);
+        localStorage.setItem('accessToken', res.accessToken);
         this.router.navigateByUrl("/home"); // Main page
+      } else {
+        this.toastr.warning(null, 'Invalid credentials', {
+          tapToDismiss: true,
+          positionClass: 'toast-bottom-center'
+        });
       }
     }, (err: HttpErrorResponse) => {
       console.log("error: " + err);
 
+      this.toastr.error(null, 'Server Error', {
+        tapToDismiss: true,
+        positionClass: 'toast-bottom-center'
+      });
     });
   }
 }
