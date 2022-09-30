@@ -3,7 +3,7 @@ Flask==1.1.1
 Flask-Cors==3.0.8
 Flask-RESTful==0.3.7
 gensim==3.8.1
-joblib==0.14.1
+joblib==1.2.0
 jsonschema==2.6.0
 nltk==3.4.5
 numpy==1.18.1
